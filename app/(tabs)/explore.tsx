@@ -1,109 +1,139 @@
-import { StyleSheet, Image, Platform } from 'react-native';
+import { useRouter } from "expo-router";
+import React from "react";
+import { StyleSheet, Image, View, Text, FlatList, TouchableOpacity } from "react-native";
 
-import { Collapsible } from '@/components/Collapsible';
-import { ExternalLink } from '@/components/ExternalLink';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-import { IconSymbol } from '@/components/ui/IconSymbol';
+type ImageSource = { uri: string } | number;
 
 export default function TabTwoScreen() {
+  const images: ImageSource[] = [
+    require("../../assets/images/image1.png"),
+    require("../../assets/images/image2.png"),
+    require("../../assets/images/image3.png"),
+    require("../../assets/images/image4.png"),
+    require("../../assets/images/image5.png"),
+    require("../../assets/images/image6.png"),
+    require("../../assets/images/image7.png"),
+    require("../../assets/images/image8.png"),
+    require("../../assets/images/image9.png"),
+    require("../../assets/images/1.jpeg"),
+    require("../../assets/images/2.jpeg"),
+    require("../../assets/images/3.jpeg"),
+    require("../../assets/images/4.jpeg"),
+    require("../../assets/images/5.jpeg"),
+    require("../../assets/images/6.jpeg"),
+    require("../../assets/images/7.jpeg"),
+    require("../../assets/images/8.jpeg"),
+    require("../../assets/images/9.jpeg"),
+    require("../../assets/images/10.jpeg"),
+    require("../../assets/images/11.jpeg"),
+    require("../../assets/images/12.jpeg"),
+    require("../../assets/images/13.jpeg"),
+    require("../../assets/images/14.jpeg"),
+    require("../../assets/images/15.jpeg"),
+    require("../../assets/images/16.jpeg"),
+    require("../../assets/images/17.jpeg"),
+    require("../../assets/images/18.jpeg"),
+    require("../../assets/images/19.jpeg"),
+    require("../../assets/images/20.jpeg"),
+    require("../../assets/images/21.jpeg"),
+    require("../../assets/images/22.jpeg"),
+    require("../../assets/images/23.jpeg"),
+    require("../../assets/images/24.jpeg"),
+    require("../../assets/images/25.jpeg"),
+    require("../../assets/images/26.jpeg"),
+    require("../../assets/images/27.jpeg"),
+    require("../../assets/images/28.jpeg"),
+    require("../../assets/images/29.jpeg"),
+    require("../../assets/images/30.jpeg"),
+    require("../../assets/images/31.jpeg"),
+  ];
+
+  const renderImage = ({ item }: { item: ImageSource }) => (
+    <View style={styles.imageContainer}>
+      <Image source={item} style={styles.image} />
+    </View>
+  );
+
+  const router = useRouter();
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
-      headerImage={
-        <IconSymbol
-          size={310}
-          color="#808080"
-          name="chevron.left.forwardslash.chevron.right"
-          style={styles.headerImage}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Explore</ThemedText>
-      </ThemedView>
-      <ThemedText>This app includes example code to help you get started.</ThemedText>
-      <Collapsible title="File-based routing">
-        <ThemedText>
-          This app has two screens:{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/explore.tsx</ThemedText>
-        </ThemedText>
-        <ThemedText>
-          The layout file in <ThemedText type="defaultSemiBold">app/(tabs)/_layout.tsx</ThemedText>{' '}
-          sets up the tab navigator.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/router/introduction">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Android, iOS, and web support">
-        <ThemedText>
-          You can open this project on Android, iOS, and the web. To open the web version, press{' '}
-          <ThemedText type="defaultSemiBold">w</ThemedText> in the terminal running this project.
-        </ThemedText>
-      </Collapsible>
-      <Collapsible title="Images">
-        <ThemedText>
-          For static images, you can use the <ThemedText type="defaultSemiBold">@2x</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">@3x</ThemedText> suffixes to provide files for
-          different screen densities
-        </ThemedText>
-        <Image source={require('@/assets/images/react-logo.png')} style={{ alignSelf: 'center' }} />
-        <ExternalLink href="https://reactnative.dev/docs/images">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Custom fonts">
-        <ThemedText>
-          Open <ThemedText type="defaultSemiBold">app/_layout.tsx</ThemedText> to see how to load{' '}
-          <ThemedText style={{ fontFamily: 'SpaceMono' }}>
-            custom fonts such as this one.
-          </ThemedText>
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/versions/latest/sdk/font">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Light and dark mode components">
-        <ThemedText>
-          This template has light and dark mode support. The{' '}
-          <ThemedText type="defaultSemiBold">useColorScheme()</ThemedText> hook lets you inspect
-          what the user's current color scheme is, and so you can adjust UI colors accordingly.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/develop/user-interface/color-themes/">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Animations">
-        <ThemedText>
-          This template includes an example of an animated component. The{' '}
-          <ThemedText type="defaultSemiBold">components/HelloWave.tsx</ThemedText> component uses
-          the powerful <ThemedText type="defaultSemiBold">react-native-reanimated</ThemedText>{' '}
-          library to create a waving hand animation.
-        </ThemedText>
-        {Platform.select({
-          ios: (
-            <ThemedText>
-              The <ThemedText type="defaultSemiBold">components/ParallaxScrollView.tsx</ThemedText>{' '}
-              component provides a parallax effect for the header image.
-            </ThemedText>
-          ),
-        })}
-      </Collapsible>
-    </ParallaxScrollView>
+    <View style={styles.container}>
+      {/* <Text style={styles.header}>Gallery</Text> */}
+      <Text style={styles.description}>Explore our collection of images showcasing our work and creativity.</Text>
+      
+      <TouchableOpacity style={styles.contactButton} onPress={() => router.push("/contact")}> 
+        <Text style={styles.contactButtonText}>Contact Us</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.contactButton} onPress={() => router.push("/services")}> 
+        <Text style={styles.contactButtonText}>Services</Text>
+      </TouchableOpacity>
+      
+      <FlatList
+        data={images}
+        renderItem={renderImage}
+        keyExtractor={(item, index) => index.toString()}
+        numColumns={2}
+        contentContainerStyle={styles.gridContainer}
+      />
+
+      <Text style={styles.importantMessage}>Stay connected with us for more updates and inspiration!</Text>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  headerImage: {
-    color: '#808080',
-    bottom: -90,
-    left: -35,
-    position: 'absolute',
+  container: {
+    flex: 1,
+    backgroundColor: "#f5f5f5",
+    padding: 10,
   },
-  titleContainer: {
-    flexDirection: 'row',
-    gap: 8,
+  header: {
+    fontSize: 26,
+    fontWeight: "bold",
+    textAlign: "center",
+    marginBottom: 10,
+  },
+  description: {
+    fontSize: 16,
+    textAlign: "center",
+    color: "#555",
+    marginBottom: 20,
+  },
+  gridContainer: {
+    justifyContent: "center",
+  },
+  imageContainer: {
+    flex: 1,
+    margin: 5,
+    borderRadius: 10,
+    overflow: "hidden",
+    elevation: 3,
+    backgroundColor: "#fff",
+  },
+  image: {
+    width: "100%",
+    height: 180,
+    resizeMode: "cover",
+  },
+  contactButton: {
+    width: "100%",
+    padding: 14,
+    backgroundColor: "#2E8B57",
+    borderRadius: 6,
+    alignItems: "center",
+    marginBottom: 16,
+  },
+  contactButtonText: {
+    color: "#fff",
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  importantMessage: {
+    textAlign: "center",
+    fontSize: 16,
+    color: "#d9534f",
+    marginTop: 20,
+    fontWeight: "bold",
   },
 });

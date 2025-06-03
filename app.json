@@ -1,5 +1,6 @@
 {
   "expo": {
+    "sdkVersion": "53.0.0",
     "name": "klemzApp",
     "slug": "klemzApp",
     "version": "1.0.0",
